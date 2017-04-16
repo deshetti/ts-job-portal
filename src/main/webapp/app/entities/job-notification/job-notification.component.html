@@ -1,0 +1,101 @@
+<div>
+    <h2>
+        <span jhiTranslate="jobportalApp.job_notification.home.title">Job Notifications</span>
+        <button class="btn btn-primary float-right create-job-notification" [routerLink]="['/', { outlets: { popup: ['job-notification-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="jobportalApp.job_notification.home.createLabel">
+            Create new Job Notification
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12 no-padding-right">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'jobportalApp.job_notification.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="job_notifications">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="position_title"><span jhiTranslate="jobportalApp.job_notification.position_title">Position Title</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="notification_date"><span jhiTranslate="jobportalApp.job_notification.notification_date">Notification Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="job_location"><span jhiTranslate="jobportalApp.job_notification.job_location">Job Location</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="post_name"><span jhiTranslate="jobportalApp.job_notification.post_name">Post Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span jhiTranslate="jobportalApp.job_notification.description">Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="no_of_vacancies"><span jhiTranslate="jobportalApp.job_notification.no_of_vacancies">No Of Vacancies</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="age_limit"><span jhiTranslate="jobportalApp.job_notification.age_limit">Age Limit</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="education_limit"><span jhiTranslate="jobportalApp.job_notification.education_limit">Education Limit</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="salary"><span jhiTranslate="jobportalApp.job_notification.salary">Salary</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="reservation"><span jhiTranslate="jobportalApp.job_notification.reservation">Reservation</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="application_deadline"><span jhiTranslate="jobportalApp.job_notification.application_deadline">Application Deadline</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="notification_link"><span jhiTranslate="jobportalApp.job_notification.notification_link">Notification Link</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="application_link"><span jhiTranslate="jobportalApp.job_notification.application_link">Application Link</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="organization"><span jhiTranslate="jobportalApp.job_notification.organization">Organization</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="job_typeType"><span jhiTranslate="jobportalApp.job_notification.job_type">Job Type</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let job_notification of job_notifications ;trackBy: trackId">
+                <td><a [routerLink]="['../job-notification', job_notification.id ]">{{job_notification.id}}</a></td>
+                <td>{{job_notification.position_title}}</td>
+                <td>{{job_notification.notification_date | date:'mediumDate'}}</td>
+                <td>{{job_notification.job_location}}</td>
+                <td>{{job_notification.post_name}}</td>
+                <td>{{job_notification.description}}</td>
+                <td>{{job_notification.no_of_vacancies}}</td>
+                <td>{{job_notification.age_limit}}</td>
+                <td>{{job_notification.education_limit}}</td>
+                <td>{{job_notification.salary}}</td>
+                <td>{{job_notification.reservation}}</td>
+                <td>{{job_notification.application_deadline | date:'mediumDate'}}</td>
+                <td>{{job_notification.notification_link}}</td>
+                <td>{{job_notification.application_link}}</td>
+                <td>{{job_notification.organization}}</td>
+                <td>
+                    <div *ngIf="job_notification.job_typeId">
+                        <a [routerLink]="['../job-type', job_notification.job_typeId  ]" >{{job_notification.job_typeType}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../job-notification', job_notification.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'job-notification/'+ job_notification.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'job-notification/'+ job_notification.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

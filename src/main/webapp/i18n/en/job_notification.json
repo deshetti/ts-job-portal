@@ -1,0 +1,36 @@
+{
+    "jobportalApp": {
+        "job_notification" : {
+            "home": {
+                "title": "Job Notifications",
+                "createLabel": "Create a new Job Notification",
+                "createOrEditLabel": "Create or edit a Job Notification",
+                "search": "Search for Job Notification"
+            },
+            "created": "A new Job Notification is created with identifier {{ param }}",
+            "updated": "A Job Notification is updated with identifier {{ param }}",
+            "deleted": "A Job Notification is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Job Notification {{ id }}?"
+            },
+            "detail": {
+                "title": "Job Notification"
+            },
+            "position_title": "Position Title",
+            "notification_date": "Notification Date",
+            "job_location": "Job Location",
+            "post_name": "Post Name",
+            "description": "Description",
+            "no_of_vacancies": "No Of Vacancies",
+            "age_limit": "Age Limit",
+            "education_limit": "Education Limit",
+            "salary": "Salary",
+            "reservation": "Reservation",
+            "application_deadline": "Application Deadline",
+            "notification_link": "Notification Link",
+            "application_link": "Application Link",
+            "organization": "Organization",
+            "job_type": "Job Type"
+        }
+    }
+}

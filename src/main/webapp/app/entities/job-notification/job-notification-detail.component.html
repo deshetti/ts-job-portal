@@ -1,0 +1,83 @@
+
+<div *ngIf="job_notification">
+    <h2><span jhiTranslate="jobportalApp.job_notification.detail.title">Job Notification</span> {{job_notification.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jobportalApp.job_notification.position_title">Position Title</span></dt>
+        <dd>
+            <span>{{job_notification.position_title}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.job_notification.notification_date">Notification Date</span></dt>
+        <dd>
+            <span>{{job_notification.notification_date | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.job_notification.job_location">Job Location</span></dt>
+        <dd>
+            <span>{{job_notification.job_location}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.job_notification.post_name">Post Name</span></dt>
+        <dd>
+            <span>{{job_notification.post_name}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.job_notification.description">Description</span></dt>
+        <dd>
+            <span>{{job_notification.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.job_notification.no_of_vacancies">No Of Vacancies</span></dt>
+        <dd>
+            <span>{{job_notification.no_of_vacancies}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.job_notification.age_limit">Age Limit</span></dt>
+        <dd>
+            <span>{{job_notification.age_limit}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.job_notification.education_limit">Education Limit</span></dt>
+        <dd>
+            <span>{{job_notification.education_limit}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.job_notification.salary">Salary</span></dt>
+        <dd>
+            <span>{{job_notification.salary}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.job_notification.reservation">Reservation</span></dt>
+        <dd>
+            <span>{{job_notification.reservation}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.job_notification.application_deadline">Application Deadline</span></dt>
+        <dd>
+            <span>{{job_notification.application_deadline | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.job_notification.notification_link">Notification Link</span></dt>
+        <dd>
+            <span>{{job_notification.notification_link}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.job_notification.application_link">Application Link</span></dt>
+        <dd>
+            <span>{{job_notification.application_link}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.job_notification.organization">Organization</span></dt>
+        <dd>
+            <span>{{job_notification.organization}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.job_notification.job_type">Job Type</span></dt>
+        <dd>
+            <div *ngIf="job_notification.job_typeId">
+                <a [routerLink]="['/job-type', job_notification.job_typeId]">{{job_notification.job_typeType}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'job-notification/'+ job_notification.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
