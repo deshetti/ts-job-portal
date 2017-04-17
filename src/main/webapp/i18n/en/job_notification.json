@@ -19,17 +19,17 @@
             "position_title": "Position Title",
             "notification_date": "Notification Date",
             "job_location": "Job Location",
-            "post_name": "Post Name",
-            "description": "Description",
             "no_of_vacancies": "No Of Vacancies",
             "age_limit": "Age Limit",
             "education_limit": "Education Limit",
             "salary": "Salary",
             "reservation": "Reservation",
             "application_deadline": "Application Deadline",
+            "organization": "Organization",
+            "duration": "Duration",
             "notification_link": "Notification Link",
             "application_link": "Application Link",
-            "organization": "Organization",
+            "description": "Description",
             "job_type": "Job Type"
         }
     }

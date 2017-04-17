@@ -99,8 +99,8 @@ jhipster:
         from: jobportal@localhost
     swagger:
         default-include-pattern: /api/.*
-        title: jobportal API
-        description: jobportal API documentation
+        title: Telangana Job Portal API
+        description: Telangana Job Portal API documentation
         version: 0.0.1
         terms-of-service-url:
         contact-name:

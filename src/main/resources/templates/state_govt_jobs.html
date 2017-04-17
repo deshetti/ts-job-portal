@@ -1,0 +1,193 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="A portfolio template that uses Material Design Lite." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <title>govt job portal</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" />
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.green-amber.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+</head>
+
+<body>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title"><a href="/portal"><img class="counting-india-logo-image" src="images/logo.png" /></a></span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
+
+            <nav class="mdl-navigation">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
+                    <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
+                        <i class="material-icons">search</i>
+                    </label>
+                    <div class="mdl-textfield__expandable-holder">
+                        <input class="mdl-textfield__input" type="text" id="search-field" placeholder="Search here" />
+                    </div>
+                </div>
+
+            </nav>
+
+
+        </div>
+    </header>
+
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title"><a href="index.html"><img class="counting-india-logo-image" src="images/logo2.png" /></a></span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">About Us</a>
+            <a class="mdl-navigation__link" href="">Contact Us</a>
+        </nav>
+    </div>
+
+    <main class="mdl-layout__content">
+
+        <div class="mdl-grid portfolio-max-width"><div class="logo-font counting-india-slogan"><h3>Number of State Government Jobs available</h3></div></div>
+
+        <div class="mdl-grid portfolio-max-width">
+
+
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-card  mdl-card mdl-shadow--4dp portfolio-blog-card-compact">
+                <div class="mdl-card__title ">
+                    <h2 class="mdl-card__title-text"><strong>Assistant Executive Engineer</strong></h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    Number of Vacancies: <strong>123</strong> <br/> Last date of Application: <strong>12-1-2017</strong> <br/> Qualification: <strong>Degree/PG</strong>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a href="/jobDetails" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                        Read More
+                    </a>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-card  mdl-card mdl-shadow--4dp portfolio-blog-card-compact">
+                <div class="mdl-card__title ">
+                    <h2 class="mdl-card__title-text"><strong>Deputy General Manager</strong></h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    Number of Vacancies: <strong>123</strong> <br/> Last date of Application: <strong>12-1-2017</strong> <br/> Qualification: <strong>Degree/PG</strong>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a href="/jobDetails" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                        Read More
+                    </a>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-card  mdl-card mdl-shadow--4dp portfolio-blog-card-compact">
+                <div class="mdl-card__title ">
+                    <h2 class="mdl-card__title-text"><strong>Central Armed Police Forces</strong></h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    Number of Vacancies: <strong>123</strong> <br/> Last date of Application: <strong>12-1-2017</strong> <br/> Qualification: <strong>Degree/PG</strong>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a href="/jobDetails" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                        Read More
+                    </a>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-card  mdl-card mdl-shadow--4dp portfolio-blog-card-compact">
+                <div class="mdl-card__title ">
+                    <h2 class="mdl-card__title-text"><strong>Assistant Executive Engineer</strong></h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    Number of Vacancies: <strong>123</strong> <br/> Last date of Application: <strong>12-1-2017</strong> <br/> Qualification: <strong>Degree/PG</strong>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a href="/jobDetails" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                        Read More
+                    </a>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-card  mdl-card mdl-shadow--4dp portfolio-blog-card-compact">
+                <div class="mdl-card__title ">
+                    <h2 class="mdl-card__title-text"><strong>Assistant Executive Engineer</strong></h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    Number of Vacancies: <strong>123</strong> <br/> Last date of Application: <strong>12-1-2017</strong> <br/> Qualification: <strong>Degree/PG</strong>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a href="/jobDetails" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                        Read More
+                    </a>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-card  mdl-card mdl-shadow--4dp portfolio-blog-card-compact">
+                <div class="mdl-card__title ">
+                    <h2 class="mdl-card__title-text"><strong>Assistant Executive Engineer</strong></h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    Number of Vacancies: <strong>123</strong> <br/> Last date of Application: <strong>12-1-2017</strong> <br/> Qualification: <strong>Degree/PG</strong>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a href="/jobDetails" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                        Read More
+                    </a>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-card  mdl-card mdl-shadow--4dp portfolio-blog-card-compact">
+                <div class="mdl-card__title ">
+                    <h2 class="mdl-card__title-text"><strong>Assistant Executive Engineer</strong></h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    Number of Vacancies: <strong>123</strong> <br/> Last date for apply: <strong>12-1-2017</strong> <br/> Qualification: <strong>Degree/PG</strong>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <a href="/jobDetails" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                        Read More
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+
+        <footer class="mdl-mini-footer">
+            <div class="mdl-mini-footer__left-section">
+                <div class="mdl-logo">Govt job portal</div>
+            </div>
+            <div class="mdl-mini-footer__right-section">
+                <ul class="mdl-mini-footer__link-list">
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Privacy and Terms</a></li>
+                </ul>
+            </div>
+        </footer>
+    </main>
+</div>
+<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+</body>
+
+</html>

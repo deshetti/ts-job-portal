@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EventManager, AlertService, JhiLanguageService } from 'ng-jhipster';
+import { EventManager, AlertService, JhiLanguageService, DataUtils } from 'ng-jhipster';
 
 import { Job_notification } from './job-notification.model';
 import { Job_notificationPopupService } from './job-notification-popup.service';
@@ -24,6 +24,7 @@ export class Job_notificationDialogComponent implements OnInit {
             constructor(
         public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
+        private dataUtils: DataUtils,
         private alertService: AlertService,
         private job_notificationService: Job_notificationService,
         private job_typeService: Job_typeService,
@@ -37,6 +38,26 @@ export class Job_notificationDialogComponent implements OnInit {
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.job_typeService.query().subscribe(
             (res: Response) => { this.job_types = res.json(); }, (res: Response) => this.onError(res.json()));
+    }
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
+    }
+
+    openFile(contentType, field) {
+        return this.dataUtils.openFile(contentType, field);
+    }
+
+    setFileData(event, job_notification, field, isImage) {
+        if (event.target.files && event.target.files[0]) {
+            const file = event.target.files[0];
+            if (isImage && !/^image\//.test(file.type)) {
+                return;
+            }
+            this.dataUtils.toBase64(file, (base64Data) => {
+                job_notification[field] = base64Data;
+                job_notification[`${field}ContentType`] = file.type;
+            });
+        }
     }
     clear() {
         this.activeModal.dismiss('cancel');

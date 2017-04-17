@@ -33,14 +33,6 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="post_name" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="description" type="bigint">
-                <constraints nullable="false" />
-            </column>
-
             <column name="no_of_vacancies" type="integer">
                 <constraints nullable="false" />
             </column>
@@ -65,15 +57,23 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="notification_link" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="application_link" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
             <column name="jhi_organization" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="duration" type="varchar(100)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="notification_link" type="clob">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="application_link" type="clob">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="description" type="clob">
                 <constraints nullable="false" />
             </column>
 

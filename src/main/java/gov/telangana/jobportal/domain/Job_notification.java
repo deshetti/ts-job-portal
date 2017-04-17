@@ -40,13 +40,6 @@ public class Job_notification implements Serializable {
     @Column(name = "job_location", length = 100, nullable = false)
     private String job_location;
 
-    @Column(name = "post_name")
-    private Long post_name;
-
-    @NotNull
-    @Column(name = "description", nullable = false)
-    private Long description;
-
     @NotNull
     @Column(name = "no_of_vacancies", nullable = false)
     private Integer no_of_vacancies;
@@ -70,16 +63,27 @@ public class Job_notification implements Serializable {
     @Column(name = "application_deadline")
     private LocalDate application_deadline;
 
-    @Column(name = "notification_link")
-    private Long notification_link;
-
-    @Column(name = "application_link")
-    private Long application_link;
-
     @NotNull
     @Size(max = 100)
     @Column(name = "jhi_organization", length = 100, nullable = false)
     private String organization;
+
+    @Size(max = 100)
+    @Column(name = "duration", length = 100)
+    private String duration;
+
+    @Lob
+    @Column(name = "notification_link")
+    private String notification_link;
+
+    @Lob
+    @Column(name = "application_link")
+    private String application_link;
+
+    @NotNull
+    @Lob
+    @Column(name = "description", nullable = false)
+    private String description;
 
     @ManyToOne(optional = false)
     @NotNull
@@ -130,32 +134,6 @@ public class Job_notification implements Serializable {
 
     public void setJob_location(String job_location) {
         this.job_location = job_location;
-    }
-
-    public Long getPost_name() {
-        return post_name;
-    }
-
-    public Job_notification post_name(Long post_name) {
-        this.post_name = post_name;
-        return this;
-    }
-
-    public void setPost_name(Long post_name) {
-        this.post_name = post_name;
-    }
-
-    public Long getDescription() {
-        return description;
-    }
-
-    public Job_notification description(Long description) {
-        this.description = description;
-        return this;
-    }
-
-    public void setDescription(Long description) {
-        this.description = description;
     }
 
     public Integer getNo_of_vacancies() {
@@ -236,32 +214,6 @@ public class Job_notification implements Serializable {
         this.application_deadline = application_deadline;
     }
 
-    public Long getNotification_link() {
-        return notification_link;
-    }
-
-    public Job_notification notification_link(Long notification_link) {
-        this.notification_link = notification_link;
-        return this;
-    }
-
-    public void setNotification_link(Long notification_link) {
-        this.notification_link = notification_link;
-    }
-
-    public Long getApplication_link() {
-        return application_link;
-    }
-
-    public Job_notification application_link(Long application_link) {
-        this.application_link = application_link;
-        return this;
-    }
-
-    public void setApplication_link(Long application_link) {
-        this.application_link = application_link;
-    }
-
     public String getOrganization() {
         return organization;
     }
@@ -273,6 +225,58 @@ public class Job_notification implements Serializable {
 
     public void setOrganization(String organization) {
         this.organization = organization;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public Job_notification duration(String duration) {
+        this.duration = duration;
+        return this;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getNotification_link() {
+        return notification_link;
+    }
+
+    public Job_notification notification_link(String notification_link) {
+        this.notification_link = notification_link;
+        return this;
+    }
+
+    public void setNotification_link(String notification_link) {
+        this.notification_link = notification_link;
+    }
+
+    public String getApplication_link() {
+        return application_link;
+    }
+
+    public Job_notification application_link(String application_link) {
+        this.application_link = application_link;
+        return this;
+    }
+
+    public void setApplication_link(String application_link) {
+        this.application_link = application_link;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Job_notification description(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Job_type getJob_type() {
@@ -315,17 +319,17 @@ public class Job_notification implements Serializable {
             ", position_title='" + position_title + "'" +
             ", notification_date='" + notification_date + "'" +
             ", job_location='" + job_location + "'" +
-            ", post_name='" + post_name + "'" +
-            ", description='" + description + "'" +
             ", no_of_vacancies='" + no_of_vacancies + "'" +
             ", age_limit='" + age_limit + "'" +
             ", education_limit='" + education_limit + "'" +
             ", salary='" + salary + "'" +
             ", reservation='" + reservation + "'" +
             ", application_deadline='" + application_deadline + "'" +
+            ", organization='" + organization + "'" +
+            ", duration='" + duration + "'" +
             ", notification_link='" + notification_link + "'" +
             ", application_link='" + application_link + "'" +
-            ", organization='" + organization + "'" +
+            ", description='" + description + "'" +
             '}';
     }
 }

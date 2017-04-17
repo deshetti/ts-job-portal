@@ -38,17 +38,6 @@
             "fieldValidateRulesMaxlength": "100"
         },
         {
-            "fieldName": "post_name",
-            "fieldType": "Long"
-        },
-        {
-            "fieldName": "description",
-            "fieldType": "Long",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "no_of_vacancies",
             "fieldType": "Integer",
             "fieldValidateRules": [
@@ -92,14 +81,6 @@
             "fieldType": "LocalDate"
         },
         {
-            "fieldName": "notification_link",
-            "fieldType": "Long"
-        },
-        {
-            "fieldName": "application_link",
-            "fieldType": "Long"
-        },
-        {
             "fieldName": "organization",
             "fieldType": "String",
             "fieldValidateRules": [
@@ -107,6 +88,32 @@
                 "maxlength"
             ],
             "fieldValidateRulesMaxlength": "100"
+        },
+        {
+            "fieldName": "duration",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "100"
+        },
+        {
+            "fieldName": "notification_link",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "application_link",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "changelogDate": "20170415234830",

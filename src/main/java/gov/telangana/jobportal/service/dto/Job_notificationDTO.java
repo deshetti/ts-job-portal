@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
+import javax.persistence.Lob;
 
 /**
  * A DTO for the Job_notification entity.
@@ -25,11 +26,6 @@ public class Job_notificationDTO implements Serializable {
     @Size(max = 100)
     private String job_location;
 
-    private Long post_name;
-
-    @NotNull
-    private Long description;
-
     @NotNull
     private Integer no_of_vacancies;
 
@@ -47,13 +43,22 @@ public class Job_notificationDTO implements Serializable {
 
     private LocalDate application_deadline;
 
-    private Long notification_link;
-
-    private Long application_link;
-
     @NotNull
     @Size(max = 100)
     private String organization;
+
+    @Size(max = 100)
+    private String duration;
+
+    @Lob
+    private String notification_link;
+
+    @Lob
+    private String application_link;
+
+    @NotNull
+    @Lob
+    private String description;
 
     private Long job_typeId;
 
@@ -86,20 +91,6 @@ public class Job_notificationDTO implements Serializable {
 
     public void setJob_location(String job_location) {
         this.job_location = job_location;
-    }
-    public Long getPost_name() {
-        return post_name;
-    }
-
-    public void setPost_name(Long post_name) {
-        this.post_name = post_name;
-    }
-    public Long getDescription() {
-        return description;
-    }
-
-    public void setDescription(Long description) {
-        this.description = description;
     }
     public Integer getNo_of_vacancies() {
         return no_of_vacancies;
@@ -143,26 +134,40 @@ public class Job_notificationDTO implements Serializable {
     public void setApplication_deadline(LocalDate application_deadline) {
         this.application_deadline = application_deadline;
     }
-    public Long getNotification_link() {
-        return notification_link;
-    }
-
-    public void setNotification_link(Long notification_link) {
-        this.notification_link = notification_link;
-    }
-    public Long getApplication_link() {
-        return application_link;
-    }
-
-    public void setApplication_link(Long application_link) {
-        this.application_link = application_link;
-    }
     public String getOrganization() {
         return organization;
     }
 
     public void setOrganization(String organization) {
         this.organization = organization;
+    }
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+    public String getNotification_link() {
+        return notification_link;
+    }
+
+    public void setNotification_link(String notification_link) {
+        this.notification_link = notification_link;
+    }
+    public String getApplication_link() {
+        return application_link;
+    }
+
+    public void setApplication_link(String application_link) {
+        this.application_link = application_link;
+    }
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Long getJob_typeId() {
@@ -209,17 +214,17 @@ public class Job_notificationDTO implements Serializable {
             ", position_title='" + position_title + "'" +
             ", notification_date='" + notification_date + "'" +
             ", job_location='" + job_location + "'" +
-            ", post_name='" + post_name + "'" +
-            ", description='" + description + "'" +
             ", no_of_vacancies='" + no_of_vacancies + "'" +
             ", age_limit='" + age_limit + "'" +
             ", education_limit='" + education_limit + "'" +
             ", salary='" + salary + "'" +
             ", reservation='" + reservation + "'" +
             ", application_deadline='" + application_deadline + "'" +
+            ", organization='" + organization + "'" +
+            ", duration='" + duration + "'" +
             ", notification_link='" + notification_link + "'" +
             ", application_link='" + application_link + "'" +
-            ", organization='" + organization + "'" +
+            ", description='" + description + "'" +
             '}';
     }
 }

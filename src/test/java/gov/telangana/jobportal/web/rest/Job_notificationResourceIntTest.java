@@ -24,6 +24,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
@@ -53,12 +54,6 @@ public class Job_notificationResourceIntTest {
     private static final String DEFAULT_JOB_LOCATION = "AAAAAAAAAA";
     private static final String UPDATED_JOB_LOCATION = "BBBBBBBBBB";
 
-    private static final Long DEFAULT_POST_NAME = 1L;
-    private static final Long UPDATED_POST_NAME = 2L;
-
-    private static final Long DEFAULT_DESCRIPTION = 1L;
-    private static final Long UPDATED_DESCRIPTION = 2L;
-
     private static final Integer DEFAULT_NO_OF_VACANCIES = 1;
     private static final Integer UPDATED_NO_OF_VACANCIES = 2;
 
@@ -77,14 +72,20 @@ public class Job_notificationResourceIntTest {
     private static final LocalDate DEFAULT_APPLICATION_DEADLINE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_APPLICATION_DEADLINE = LocalDate.now(ZoneId.systemDefault());
 
-    private static final Long DEFAULT_NOTIFICATION_LINK = 1L;
-    private static final Long UPDATED_NOTIFICATION_LINK = 2L;
-
-    private static final Long DEFAULT_APPLICATION_LINK = 1L;
-    private static final Long UPDATED_APPLICATION_LINK = 2L;
-
     private static final String DEFAULT_ORGANIZATION = "AAAAAAAAAA";
     private static final String UPDATED_ORGANIZATION = "BBBBBBBBBB";
+
+    private static final String DEFAULT_DURATION = "AAAAAAAAAA";
+    private static final String UPDATED_DURATION = "BBBBBBBBBB";
+
+    private static final String DEFAULT_NOTIFICATION_LINK = "AAAAAAAAAA";
+    private static final String UPDATED_NOTIFICATION_LINK = "BBBBBBBBBB";
+
+    private static final String DEFAULT_APPLICATION_LINK = "AAAAAAAAAA";
+    private static final String UPDATED_APPLICATION_LINK = "BBBBBBBBBB";
+
+    private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
 
     @Autowired
     private Job_notificationRepository job_notificationRepository;
@@ -135,17 +136,17 @@ public class Job_notificationResourceIntTest {
             .position_title(DEFAULT_POSITION_TITLE)
             .notification_date(DEFAULT_NOTIFICATION_DATE)
             .job_location(DEFAULT_JOB_LOCATION)
-            .post_name(DEFAULT_POST_NAME)
-            .description(DEFAULT_DESCRIPTION)
             .no_of_vacancies(DEFAULT_NO_OF_VACANCIES)
             .age_limit(DEFAULT_AGE_LIMIT)
             .education_limit(DEFAULT_EDUCATION_LIMIT)
             .salary(DEFAULT_SALARY)
             .reservation(DEFAULT_RESERVATION)
             .application_deadline(DEFAULT_APPLICATION_DEADLINE)
+            .organization(DEFAULT_ORGANIZATION)
+            .duration(DEFAULT_DURATION)
             .notification_link(DEFAULT_NOTIFICATION_LINK)
             .application_link(DEFAULT_APPLICATION_LINK)
-            .organization(DEFAULT_ORGANIZATION);
+            .description(DEFAULT_DESCRIPTION);
         // Add required entity
         Job_type job_type = Job_typeResourceIntTest.createEntity(em);
         em.persist(job_type);
@@ -179,17 +180,17 @@ public class Job_notificationResourceIntTest {
         assertThat(testJob_notification.getPosition_title()).isEqualTo(DEFAULT_POSITION_TITLE);
         assertThat(testJob_notification.getNotification_date()).isEqualTo(DEFAULT_NOTIFICATION_DATE);
         assertThat(testJob_notification.getJob_location()).isEqualTo(DEFAULT_JOB_LOCATION);
-        assertThat(testJob_notification.getPost_name()).isEqualTo(DEFAULT_POST_NAME);
-        assertThat(testJob_notification.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testJob_notification.getNo_of_vacancies()).isEqualTo(DEFAULT_NO_OF_VACANCIES);
         assertThat(testJob_notification.getAge_limit()).isEqualTo(DEFAULT_AGE_LIMIT);
         assertThat(testJob_notification.getEducation_limit()).isEqualTo(DEFAULT_EDUCATION_LIMIT);
         assertThat(testJob_notification.getSalary()).isEqualTo(DEFAULT_SALARY);
         assertThat(testJob_notification.getReservation()).isEqualTo(DEFAULT_RESERVATION);
         assertThat(testJob_notification.getApplication_deadline()).isEqualTo(DEFAULT_APPLICATION_DEADLINE);
+        assertThat(testJob_notification.getOrganization()).isEqualTo(DEFAULT_ORGANIZATION);
+        assertThat(testJob_notification.getDuration()).isEqualTo(DEFAULT_DURATION);
         assertThat(testJob_notification.getNotification_link()).isEqualTo(DEFAULT_NOTIFICATION_LINK);
         assertThat(testJob_notification.getApplication_link()).isEqualTo(DEFAULT_APPLICATION_LINK);
-        assertThat(testJob_notification.getOrganization()).isEqualTo(DEFAULT_ORGANIZATION);
+        assertThat(testJob_notification.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
 
         // Validate the Job_notification in Elasticsearch
         Job_notification job_notificationEs = job_notificationSearchRepository.findOne(testJob_notification.getId());
@@ -275,25 +276,6 @@ public class Job_notificationResourceIntTest {
 
     @Test
     @Transactional
-    public void checkDescriptionIsRequired() throws Exception {
-        int databaseSizeBeforeTest = job_notificationRepository.findAll().size();
-        // set the field null
-        job_notification.setDescription(null);
-
-        // Create the Job_notification, which fails.
-        Job_notificationDTO job_notificationDTO = job_notificationMapper.job_notificationToJob_notificationDTO(job_notification);
-
-        restJob_notificationMockMvc.perform(post("/api/job-notifications")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(job_notificationDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Job_notification> job_notificationList = job_notificationRepository.findAll();
-        assertThat(job_notificationList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkNo_of_vacanciesIsRequired() throws Exception {
         int databaseSizeBeforeTest = job_notificationRepository.findAll().size();
         // set the field null
@@ -332,6 +314,25 @@ public class Job_notificationResourceIntTest {
 
     @Test
     @Transactional
+    public void checkDescriptionIsRequired() throws Exception {
+        int databaseSizeBeforeTest = job_notificationRepository.findAll().size();
+        // set the field null
+        job_notification.setDescription(null);
+
+        // Create the Job_notification, which fails.
+        Job_notificationDTO job_notificationDTO = job_notificationMapper.job_notificationToJob_notificationDTO(job_notification);
+
+        restJob_notificationMockMvc.perform(post("/api/job-notifications")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(job_notificationDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Job_notification> job_notificationList = job_notificationRepository.findAll();
+        assertThat(job_notificationList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllJob_notifications() throws Exception {
         // Initialize the database
         job_notificationRepository.saveAndFlush(job_notification);
@@ -344,17 +345,17 @@ public class Job_notificationResourceIntTest {
             .andExpect(jsonPath("$.[*].position_title").value(hasItem(DEFAULT_POSITION_TITLE.toString())))
             .andExpect(jsonPath("$.[*].notification_date").value(hasItem(DEFAULT_NOTIFICATION_DATE.toString())))
             .andExpect(jsonPath("$.[*].job_location").value(hasItem(DEFAULT_JOB_LOCATION.toString())))
-            .andExpect(jsonPath("$.[*].post_name").value(hasItem(DEFAULT_POST_NAME.intValue())))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.intValue())))
             .andExpect(jsonPath("$.[*].no_of_vacancies").value(hasItem(DEFAULT_NO_OF_VACANCIES)))
             .andExpect(jsonPath("$.[*].age_limit").value(hasItem(DEFAULT_AGE_LIMIT.toString())))
             .andExpect(jsonPath("$.[*].education_limit").value(hasItem(DEFAULT_EDUCATION_LIMIT.toString())))
             .andExpect(jsonPath("$.[*].salary").value(hasItem(DEFAULT_SALARY.toString())))
             .andExpect(jsonPath("$.[*].reservation").value(hasItem(DEFAULT_RESERVATION.toString())))
             .andExpect(jsonPath("$.[*].application_deadline").value(hasItem(DEFAULT_APPLICATION_DEADLINE.toString())))
-            .andExpect(jsonPath("$.[*].notification_link").value(hasItem(DEFAULT_NOTIFICATION_LINK.intValue())))
-            .andExpect(jsonPath("$.[*].application_link").value(hasItem(DEFAULT_APPLICATION_LINK.intValue())))
-            .andExpect(jsonPath("$.[*].organization").value(hasItem(DEFAULT_ORGANIZATION.toString())));
+            .andExpect(jsonPath("$.[*].organization").value(hasItem(DEFAULT_ORGANIZATION.toString())))
+            .andExpect(jsonPath("$.[*].duration").value(hasItem(DEFAULT_DURATION.toString())))
+            .andExpect(jsonPath("$.[*].notification_link").value(hasItem(DEFAULT_NOTIFICATION_LINK.toString())))
+            .andExpect(jsonPath("$.[*].application_link").value(hasItem(DEFAULT_APPLICATION_LINK.toString())))
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
     }
 
     @Test
@@ -371,17 +372,17 @@ public class Job_notificationResourceIntTest {
             .andExpect(jsonPath("$.position_title").value(DEFAULT_POSITION_TITLE.toString()))
             .andExpect(jsonPath("$.notification_date").value(DEFAULT_NOTIFICATION_DATE.toString()))
             .andExpect(jsonPath("$.job_location").value(DEFAULT_JOB_LOCATION.toString()))
-            .andExpect(jsonPath("$.post_name").value(DEFAULT_POST_NAME.intValue()))
-            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.intValue()))
             .andExpect(jsonPath("$.no_of_vacancies").value(DEFAULT_NO_OF_VACANCIES))
             .andExpect(jsonPath("$.age_limit").value(DEFAULT_AGE_LIMIT.toString()))
             .andExpect(jsonPath("$.education_limit").value(DEFAULT_EDUCATION_LIMIT.toString()))
             .andExpect(jsonPath("$.salary").value(DEFAULT_SALARY.toString()))
             .andExpect(jsonPath("$.reservation").value(DEFAULT_RESERVATION.toString()))
             .andExpect(jsonPath("$.application_deadline").value(DEFAULT_APPLICATION_DEADLINE.toString()))
-            .andExpect(jsonPath("$.notification_link").value(DEFAULT_NOTIFICATION_LINK.intValue()))
-            .andExpect(jsonPath("$.application_link").value(DEFAULT_APPLICATION_LINK.intValue()))
-            .andExpect(jsonPath("$.organization").value(DEFAULT_ORGANIZATION.toString()));
+            .andExpect(jsonPath("$.organization").value(DEFAULT_ORGANIZATION.toString()))
+            .andExpect(jsonPath("$.duration").value(DEFAULT_DURATION.toString()))
+            .andExpect(jsonPath("$.notification_link").value(DEFAULT_NOTIFICATION_LINK.toString()))
+            .andExpect(jsonPath("$.application_link").value(DEFAULT_APPLICATION_LINK.toString()))
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()));
     }
 
     @Test
@@ -406,17 +407,17 @@ public class Job_notificationResourceIntTest {
             .position_title(UPDATED_POSITION_TITLE)
             .notification_date(UPDATED_NOTIFICATION_DATE)
             .job_location(UPDATED_JOB_LOCATION)
-            .post_name(UPDATED_POST_NAME)
-            .description(UPDATED_DESCRIPTION)
             .no_of_vacancies(UPDATED_NO_OF_VACANCIES)
             .age_limit(UPDATED_AGE_LIMIT)
             .education_limit(UPDATED_EDUCATION_LIMIT)
             .salary(UPDATED_SALARY)
             .reservation(UPDATED_RESERVATION)
             .application_deadline(UPDATED_APPLICATION_DEADLINE)
+            .organization(UPDATED_ORGANIZATION)
+            .duration(UPDATED_DURATION)
             .notification_link(UPDATED_NOTIFICATION_LINK)
             .application_link(UPDATED_APPLICATION_LINK)
-            .organization(UPDATED_ORGANIZATION);
+            .description(UPDATED_DESCRIPTION);
         Job_notificationDTO job_notificationDTO = job_notificationMapper.job_notificationToJob_notificationDTO(updatedJob_notification);
 
         restJob_notificationMockMvc.perform(put("/api/job-notifications")
@@ -431,17 +432,17 @@ public class Job_notificationResourceIntTest {
         assertThat(testJob_notification.getPosition_title()).isEqualTo(UPDATED_POSITION_TITLE);
         assertThat(testJob_notification.getNotification_date()).isEqualTo(UPDATED_NOTIFICATION_DATE);
         assertThat(testJob_notification.getJob_location()).isEqualTo(UPDATED_JOB_LOCATION);
-        assertThat(testJob_notification.getPost_name()).isEqualTo(UPDATED_POST_NAME);
-        assertThat(testJob_notification.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testJob_notification.getNo_of_vacancies()).isEqualTo(UPDATED_NO_OF_VACANCIES);
         assertThat(testJob_notification.getAge_limit()).isEqualTo(UPDATED_AGE_LIMIT);
         assertThat(testJob_notification.getEducation_limit()).isEqualTo(UPDATED_EDUCATION_LIMIT);
         assertThat(testJob_notification.getSalary()).isEqualTo(UPDATED_SALARY);
         assertThat(testJob_notification.getReservation()).isEqualTo(UPDATED_RESERVATION);
         assertThat(testJob_notification.getApplication_deadline()).isEqualTo(UPDATED_APPLICATION_DEADLINE);
+        assertThat(testJob_notification.getOrganization()).isEqualTo(UPDATED_ORGANIZATION);
+        assertThat(testJob_notification.getDuration()).isEqualTo(UPDATED_DURATION);
         assertThat(testJob_notification.getNotification_link()).isEqualTo(UPDATED_NOTIFICATION_LINK);
         assertThat(testJob_notification.getApplication_link()).isEqualTo(UPDATED_APPLICATION_LINK);
-        assertThat(testJob_notification.getOrganization()).isEqualTo(UPDATED_ORGANIZATION);
+        assertThat(testJob_notification.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
 
         // Validate the Job_notification in Elasticsearch
         Job_notification job_notificationEs = job_notificationSearchRepository.findOne(testJob_notification.getId());
@@ -504,17 +505,17 @@ public class Job_notificationResourceIntTest {
             .andExpect(jsonPath("$.[*].position_title").value(hasItem(DEFAULT_POSITION_TITLE.toString())))
             .andExpect(jsonPath("$.[*].notification_date").value(hasItem(DEFAULT_NOTIFICATION_DATE.toString())))
             .andExpect(jsonPath("$.[*].job_location").value(hasItem(DEFAULT_JOB_LOCATION.toString())))
-            .andExpect(jsonPath("$.[*].post_name").value(hasItem(DEFAULT_POST_NAME.intValue())))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.intValue())))
             .andExpect(jsonPath("$.[*].no_of_vacancies").value(hasItem(DEFAULT_NO_OF_VACANCIES)))
             .andExpect(jsonPath("$.[*].age_limit").value(hasItem(DEFAULT_AGE_LIMIT.toString())))
             .andExpect(jsonPath("$.[*].education_limit").value(hasItem(DEFAULT_EDUCATION_LIMIT.toString())))
             .andExpect(jsonPath("$.[*].salary").value(hasItem(DEFAULT_SALARY.toString())))
             .andExpect(jsonPath("$.[*].reservation").value(hasItem(DEFAULT_RESERVATION.toString())))
             .andExpect(jsonPath("$.[*].application_deadline").value(hasItem(DEFAULT_APPLICATION_DEADLINE.toString())))
-            .andExpect(jsonPath("$.[*].notification_link").value(hasItem(DEFAULT_NOTIFICATION_LINK.intValue())))
-            .andExpect(jsonPath("$.[*].application_link").value(hasItem(DEFAULT_APPLICATION_LINK.intValue())))
-            .andExpect(jsonPath("$.[*].organization").value(hasItem(DEFAULT_ORGANIZATION.toString())));
+            .andExpect(jsonPath("$.[*].organization").value(hasItem(DEFAULT_ORGANIZATION.toString())))
+            .andExpect(jsonPath("$.[*].duration").value(hasItem(DEFAULT_DURATION.toString())))
+            .andExpect(jsonPath("$.[*].notification_link").value(hasItem(DEFAULT_NOTIFICATION_LINK.toString())))
+            .andExpect(jsonPath("$.[*].application_link").value(hasItem(DEFAULT_APPLICATION_LINK.toString())))
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())));
     }
 
     @Test

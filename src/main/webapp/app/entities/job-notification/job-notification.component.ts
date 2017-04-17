@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Response } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { EventManager, ParseLinks, PaginationUtil, JhiLanguageService, AlertService } from 'ng-jhipster';
+import { EventManager, ParseLinks, PaginationUtil, JhiLanguageService, AlertService, DataUtils } from 'ng-jhipster';
 
 import { Job_notification } from './job-notification.model';
 import { Job_notificationService } from './job-notification.service';
@@ -31,6 +31,7 @@ export class Job_notificationComponent implements OnInit, OnDestroy {
         private jhiLanguageService: JhiLanguageService,
         private job_notificationService: Job_notificationService,
         private alertService: AlertService,
+        private dataUtils: DataUtils,
         private eventManager: EventManager,
         private parseLinks: ParseLinks,
         private activatedRoute: ActivatedRoute,
@@ -122,6 +123,14 @@ export class Job_notificationComponent implements OnInit, OnDestroy {
 
     trackId(index: number, item: Job_notification) {
         return item.id;
+    }
+
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
+    }
+
+    openFile(contentType, field) {
+        return this.dataUtils.openFile(contentType, field);
     }
     registerChangeInJob_notifications() {
         this.eventSubscriber = this.eventManager.subscribe('job_notificationListModification', (response) => this.reset());

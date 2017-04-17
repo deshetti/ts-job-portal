@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { EventManager , JhiLanguageService  } from 'ng-jhipster';
+import { EventManager , JhiLanguageService , DataUtils } from 'ng-jhipster';
 
 import { Job_notification } from './job-notification.model';
 import { Job_notificationService } from './job-notification.service';
@@ -19,6 +19,7 @@ export class Job_notificationDetailComponent implements OnInit, OnDestroy {
     constructor(
         private eventManager: EventManager,
         private jhiLanguageService: JhiLanguageService,
+        private dataUtils: DataUtils,
         private job_notificationService: Job_notificationService,
         private route: ActivatedRoute
     ) {
@@ -36,6 +37,13 @@ export class Job_notificationDetailComponent implements OnInit, OnDestroy {
         this.job_notificationService.find(id).subscribe((job_notification) => {
             this.job_notification = job_notification;
         });
+    }
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
+    }
+
+    openFile(contentType, field) {
+        return this.dataUtils.openFile(contentType, field);
     }
     previousState() {
         window.history.back();

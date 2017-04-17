@@ -67,7 +67,7 @@ class Job_notificationGatlingTest extends Simulation {
             .exec(http("Create new job_notification")
             .post("/api/job-notifications")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "position_title":"SAMPLE_TEXT", "notification_date":"2020-01-01T00:00:00.000Z", "job_location":"SAMPLE_TEXT", "post_name":null, "description":null, "no_of_vacancies":"0", "age_limit":"SAMPLE_TEXT", "education_limit":"SAMPLE_TEXT", "salary":"SAMPLE_TEXT", "reservation":"SAMPLE_TEXT", "application_deadline":"2020-01-01T00:00:00.000Z", "notification_link":null, "application_link":null, "organization":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "position_title":"SAMPLE_TEXT", "notification_date":"2020-01-01T00:00:00.000Z", "job_location":"SAMPLE_TEXT", "no_of_vacancies":"0", "age_limit":"SAMPLE_TEXT", "education_limit":"SAMPLE_TEXT", "salary":"SAMPLE_TEXT", "reservation":"SAMPLE_TEXT", "application_deadline":"2020-01-01T00:00:00.000Z", "organization":"SAMPLE_TEXT", "duration":"SAMPLE_TEXT", "notification_link":null, "application_link":null, "description":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_job_notification_url"))).exitHereIfFailed
             .pause(10)
