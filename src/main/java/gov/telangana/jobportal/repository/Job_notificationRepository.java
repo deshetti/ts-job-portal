@@ -15,19 +15,19 @@ public interface Job_notificationRepository extends JpaRepository<Job_notificati
 
     @Query("SELECT NEW gov.telangana.jobportal.web.domain.CentralJobCount(sum(jn.no_of_vacancies)) " +
         "FROM Job_notification jn JOIN jn.job_type jt " +
-        "WHERE jt.id = '1101' ")
+        "WHERE jt.jhi_type='Central Government Job' ")
     public CentralJobCount retrieveCentralJobCount();
 
 
     @Query("SELECT NEW gov.telangana.jobportal.web.domain.StateJobCount(sum(jn.no_of_vacancies)) " +
         "FROM Job_notification jn JOIN jn.job_type jt " +
-        "WHERE jt.id = '1102' ")
+        "WHERE jt.jhi_type='State Government Job' ")
     public StateJobCount retrieveStateJobCount();
 
 
     @Query("SELECT NEW gov.telangana.jobportal.web.domain.OtherJobCount(sum(jn.no_of_vacancies)) " +
         "FROM Job_notification jn JOIN jn.job_type jt " +
-        "WHERE jt.id = '1103' ")
+        "WHERE jt.jhi_type='Other' ")
     public OtherJobCount retrieveOtherJobCount();
 
 }
