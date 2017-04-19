@@ -8,14 +8,6 @@
         <dd>
             <span>{{job_notification.position_title}}</span>
         </dd>
-        <dt><span jhiTranslate="jobportalApp.job_notification.organization">Organization</span></dt>
-        <dd>
-            <span>{{job_notification.organization}}</span>
-        </dd>
-        <dt><span jhiTranslate="jobportalApp.job_notification.duration">Duration</span></dt>
-        <dd>
-            <span>{{job_notification.duration}}</span>
-        </dd>
         <dt><span jhiTranslate="jobportalApp.job_notification.notification_date">Notification Date</span></dt>
         <dd>
             <span>{{job_notification.notification_date | date:'mediumDate'}}</span>
@@ -44,13 +36,17 @@
         <dd>
             <span>{{job_notification.reservation}}</span>
         </dd>
-        <dt><span jhiTranslate="jobportalApp.job_notification.description">Description</span></dt>
-        <dd>
-            <span>{{job_notification.description}}</span>
-        </dd>
         <dt><span jhiTranslate="jobportalApp.job_notification.application_deadline">Application Deadline</span></dt>
         <dd>
             <span>{{job_notification.application_deadline | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.job_notification.organization">Organization</span></dt>
+        <dd>
+            <span>{{job_notification.organization}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.job_notification.duration">Duration</span></dt>
+        <dd>
+            <span>{{job_notification.duration}}</span>
         </dd>
         <dt><span jhiTranslate="jobportalApp.job_notification.notification_link">Notification Link</span></dt>
         <dd>
@@ -60,10 +56,20 @@
         <dd>
             <span>{{job_notification.application_link}}</span>
         </dd>
+        <dt><span jhiTranslate="jobportalApp.job_notification.description">Description</span></dt>
+        <dd>
+            <span>{{job_notification.description}}</span>
+        </dd>
         <dt><span jhiTranslate="jobportalApp.job_notification.job_type">Job Type</span></dt>
         <dd>
             <div *ngIf="job_notification.job_typeId">
                 <a [routerLink]="['/job-type', job_notification.job_typeId]">{{job_notification.job_typeType}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.job_notification.job_category">Job Category</span></dt>
+        <dd>
+            <div *ngIf="job_notification.job_categoryId">
+                <a [routerLink]="['/job-category', job_notification.job_categoryId]">{{job_notification.job_categoryCategory}}</a>
             </div>
         </dd>
     </dl>

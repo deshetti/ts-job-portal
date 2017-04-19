@@ -64,6 +64,10 @@ public class Job_notificationDTO implements Serializable {
 
     private String job_typeType;
 
+    private Long job_categoryId;
+
+    private String job_categoryCategory;
+
     public Long getId() {
         return id;
     }
@@ -184,6 +188,22 @@ public class Job_notificationDTO implements Serializable {
 
     public void setJob_typeType(String job_typeType) {
         this.job_typeType = job_typeType;
+    }
+
+    public Long getJob_categoryId() {
+        return job_categoryId;
+    }
+
+    public void setJob_categoryId(Long job_categoryId) {
+        this.job_categoryId = job_categoryId;
+    }
+
+    public String getJob_categoryCategory() {
+        return job_categoryCategory;
+    }
+
+    public void setJob_categoryCategory(String job_categoryCategory) {
+        this.job_categoryCategory = job_categoryCategory;
     }
 
     @Override

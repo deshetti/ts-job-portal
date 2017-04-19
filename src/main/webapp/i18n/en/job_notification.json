@@ -30,7 +30,8 @@
             "notification_link": "Notification Link",
             "application_link": "Application Link",
             "description": "Description",
-            "job_type": "Job Type"
+            "job_type": "Job Type",
+            "job_category": "Job Category"
         }
     }
 }

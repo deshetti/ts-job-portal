@@ -9,6 +9,7 @@ import { Job_notification } from './job-notification.model';
 import { Job_notificationPopupService } from './job-notification-popup.service';
 import { Job_notificationService } from './job-notification.service';
 import { Job_type, Job_typeService } from '../job-type';
+import { Job_category, Job_categoryService } from '../job-category';
 
 @Component({
     selector: 'jhi-job-notification-dialog',
@@ -21,6 +22,8 @@ export class Job_notificationDialogComponent implements OnInit {
     isSaving: boolean;
 
     job_types: Job_type[];
+
+    job_categories: Job_category[];
             constructor(
         public activeModal: NgbActiveModal,
         private jhiLanguageService: JhiLanguageService,
@@ -28,6 +31,7 @@ export class Job_notificationDialogComponent implements OnInit {
         private alertService: AlertService,
         private job_notificationService: Job_notificationService,
         private job_typeService: Job_typeService,
+        private job_categoryService: Job_categoryService,
         private eventManager: EventManager
     ) {
         this.jhiLanguageService.setLocations(['job_notification']);
@@ -38,6 +42,8 @@ export class Job_notificationDialogComponent implements OnInit {
         this.authorities = ['ROLE_USER', 'ROLE_ADMIN'];
         this.job_typeService.query().subscribe(
             (res: Response) => { this.job_types = res.json(); }, (res: Response) => this.onError(res.json()));
+        this.job_categoryService.query().subscribe(
+            (res: Response) => { this.job_categories = res.json(); }, (res: Response) => this.onError(res.json()));
     }
     byteSize(field) {
         return this.dataUtils.byteSize(field);
@@ -97,6 +103,10 @@ export class Job_notificationDialogComponent implements OnInit {
     }
 
     trackJob_typeById(index: number, item: Job_type) {
+        return item.id;
+    }
+
+    trackJob_categoryById(index: number, item: Job_category) {
         return item.id;
     }
 }

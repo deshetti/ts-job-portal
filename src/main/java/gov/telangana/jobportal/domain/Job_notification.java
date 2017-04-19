@@ -89,6 +89,9 @@ public class Job_notification implements Serializable {
     @NotNull
     private Job_type job_type;
 
+    @ManyToOne
+    private Job_category job_category;
+
     public Long getId() {
         return id;
     }
@@ -290,6 +293,19 @@ public class Job_notification implements Serializable {
 
     public void setJob_type(Job_type job_type) {
         this.job_type = job_type;
+    }
+
+    public Job_category getJob_category() {
+        return job_category;
+    }
+
+    public Job_notification job_category(Job_category job_category) {
+        this.job_category = job_category;
+        return this;
+    }
+
+    public void setJob_category(Job_category job_category) {
+        this.job_category = job_category;
     }
 
     @Override

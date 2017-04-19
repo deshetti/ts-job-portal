@@ -9,6 +9,12 @@
                 "required"
             ],
             "otherEntityField": "type"
+        },
+        {
+            "relationshipName": "job_category",
+            "otherEntityName": "job_category",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "category"
         }
     ],
     "fields": [

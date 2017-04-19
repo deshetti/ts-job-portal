@@ -14,5 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="job_type"/>
 
+        <addForeignKeyConstraint baseColumnNames="job_category_id"
+                                 baseTableName="job_notification"
+                                 constraintName="fk_job_notification_job_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="job_category"/>
+
     </changeSet>
 </databaseChangeLog>

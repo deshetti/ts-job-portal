@@ -16,6 +16,7 @@ export class Job_notification {
         public application_link?: any,
         public description?: any,
         public job_typeId?: number,
+        public job_categoryId?: number,
     ) {
     }
 }
