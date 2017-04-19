@@ -9,6 +9,7 @@
                 "main": "Entities",
                 "jobNotification": "Job Notification",
                 "jobType": "Job Type",
+                "jobCategory": "Job Category",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

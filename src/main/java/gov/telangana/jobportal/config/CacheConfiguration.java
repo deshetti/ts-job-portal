@@ -45,6 +45,7 @@ public class CacheConfiguration {
             cm.createCache(gov.telangana.jobportal.domain.SocialUserConnection.class.getName(), jcacheConfiguration);
             cm.createCache(gov.telangana.jobportal.domain.Job_notification.class.getName(), jcacheConfiguration);
             cm.createCache(gov.telangana.jobportal.domain.Job_type.class.getName(), jcacheConfiguration);
+            cm.createCache(gov.telangana.jobportal.domain.Job_category.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
