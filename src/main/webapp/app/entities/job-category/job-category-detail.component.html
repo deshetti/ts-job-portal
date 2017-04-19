@@ -1,0 +1,29 @@
+
+<div *ngIf="job_category">
+    <h2><span jhiTranslate="jobportalApp.job_category.detail.title">Job Category</span> {{job_category.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="jobportalApp.job_category.category">Category</span></dt>
+        <dd>
+            <span>{{job_category.category}}</span>
+        </dd>
+        <dt><span jhiTranslate="jobportalApp.job_category.icon_url">Icon Url</span></dt>
+        <dd>
+            <span>{{job_category.icon_url}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'job-category/'+ job_category.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
