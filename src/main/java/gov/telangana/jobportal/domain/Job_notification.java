@@ -2,6 +2,7 @@ package gov.telangana.jobportal.domain;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Type;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
@@ -73,15 +74,18 @@ public class Job_notification implements Serializable {
     private String duration;
 
     @Lob
+    @Type(type = "text")
     @Column(name = "notification_link")
     private String notification_link;
 
     @Lob
+    @Type(type = "text")
     @Column(name = "application_link")
     private String application_link;
 
     @NotNull
     @Lob
+    @Type(type = "text")
     @Column(name = "description", nullable = false)
     private String description;
 
