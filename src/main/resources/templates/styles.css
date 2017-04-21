@@ -1,6 +1,7 @@
 
 body {background-color: #f0f0f0;
 
+
 }
 
 
@@ -10,26 +11,23 @@ body {background-color: #f0f0f0;
 
 
 
+.mdl-card__media{background-color:#ffffff; }
+
+.text-align-center{text-align: center;}
+
+
+
 .demo-card-wide.mdl-card {
   width:100%;
 }
 
-@media screen and (min-width: 768px) {
-#footer {
-   position:fixed;
-   left:0px;
-   bottom:0px;
-   height:30px;
-   width:100%;
-}
 
-}
-
+.mdl-card{min-height:0px;}
 
 
 .mdl-card__title-text{color:#4caf50;}
 
-.card_number{font-size:70px; font-weight: 700; color:#4caf50;}
+.card_number{font-size:70px; font-weight: 700; color:#4caf50; padding-left:28px;}
 .card_bg{background-color: aqua;}
 
 .bg-color{background-color:#ffffff;}
@@ -214,3 +212,14 @@ footer {
   background-size: cover;
 }
 
+
+
+
+@media screen and (max-width: 480px) {
+   
+    .image-size {display: none;} 
+    
+    h3{font-size: 20px;}
+    
+    
+}
