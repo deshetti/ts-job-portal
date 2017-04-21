@@ -72,12 +72,12 @@
             <div class="mdl-grid portfolio-max-width">
                 <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-card  mdl-card mdl-shadow--4dp portfolio-blog-card-compact" th:each="centralGovtJob : ${centralGovtJobs}">
                    <div class="mdl-card__title ">
-                        <h2 class="mdl-card__title-text"><strong th:text="${centralGovtJob.position_title}">Assistant Executive Engineer</strong></h2>
+                        <h2 class="mdl-card__title-text"><strong th:text="${centralGovtJob.positionTitle}">Assistant Executive Engineer</strong></h2>
                     </div>
                     <div class="mdl-card__supporting-text">
-                      Number of Vacancies: <strong th:text="${centralGovtJob.no_of_vacancies}">123</strong>
-                        <br/> Last date of Application: <strong th:text="${centralGovtJob.application_deadline}">12-1-2017</strong>
-                        <br/> Qualification: <strong th:text="${centralGovtJob.education_limit}">Degree/PG</strong>
+                      Number of Vacancies: <strong th:text="${centralGovtJob.vacancies}">123</strong>
+                        <br/> Last date of Application: <strong th:text="${centralGovtJob.applicationDeadline}">12-1-2017</strong>
+                        <br/> Qualification: <strong th:text="${centralGovtJob.educationLimit}">Degree/PG</strong>
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
                         <a href="/jobDetails" th:href= "@{/jobDetails/{id}(id=${centralGovtJob.id})}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">

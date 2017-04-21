@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import gov.telangana.jobportal.domain.Job_notification;
 import gov.telangana.jobportal.web.domain.CentralJobCount;
+import gov.telangana.jobportal.web.domain.JobSummary;
 import gov.telangana.jobportal.web.domain.OtherJobCount;
 import gov.telangana.jobportal.web.domain.StateJobCount;
 
@@ -34,7 +35,8 @@ public interface Job_notificationRepository extends JpaRepository<Job_notificati
         "WHERE jt.type='Other' ")
     public OtherJobCount retrieveOtherJobCount();
 
-    @Query("SELECT jn FROM Job_notification jn JOIN jn.job_type jt WHERE jt.type = :type")
-    public Page<Job_notification> findByJobType_Type(@Param("type") String type, Pageable pageable);
+    @Query("SELECT NEW gov.telangana.jobportal.web.domain.JobSummary(jn.id, jn.position_title, jn.no_of_vacancies, jn.application_deadline, jn.education_limit)" +
+        " FROM Job_notification jn JOIN jn.job_type jt WHERE jt.type = :type")
+    public Page<JobSummary> findByJobType_Type(@Param("type") String type, Pageable pageable);
 
 }
