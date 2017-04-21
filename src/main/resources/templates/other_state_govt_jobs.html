@@ -80,7 +80,7 @@
                     <br/> Qualification: <strong th:text="${otherGovtJob.education_limit}">Degree/PG</strong>
                 </div>
                 <div class="mdl-card__actions mdl-card--border">
-                    <a href="/jobDetails" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                    <a href="/jobDetails" th:href= "@{/jobDetails/{id}(id=${otherGovtJob.id})}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">
                         Read More
                     </a>
                 </div>
