@@ -29,121 +29,145 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.green-deep_orange.min.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <style>
+        .mySlides {display:none;}
+    </style>
 </head>
 
 <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <!-- Title -->
-      <span class="image-size mdl-layout-title"><a href="/portal"><img class="counting-india-logo-image" src="images/logo.png" /></a></span>
-      <!-- Add spacer, to align navigation to the right -->
-      <div class="mdl-layout-spacer"></div>
-      <!-- Navigation. We hide it in small screens. -->
-       <nav class="mdl-navigation">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
-                <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
-                  <i class="material-icons">search</i>
-                </label>
-                <div class="mdl-textfield__expandable-holder">
-                  <input class="mdl-textfield__input" type="text" id="search-field" placeholder="Search here" />
-                </div>
-            </div>
-        </nav>
-    </div>
-  </header>
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="image-size mdl-layout-title"><a href="/portal"><img class="counting-india-logo-image " src="images/logo.png" /></a></span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation. We hide it in small screens. -->
 
-  <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title"><a href="/portal"><img class="counting-india-logo-image" src="images/logo2.png" /></a></span>
-    <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="">About Us</a>
-      <a class="mdl-navigation__link" href="">Contact Us</a>
-    </nav>
-  </div>
-
-        <main class="mdl-layout__content">
-
-            <div class="mdl-grid portfolio-max-width">
-
-                <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
-
-                    <div class="mdl-card__media">
-                        <img class="article-image" src="images/01.jpg" border="0" alt="" />
+            <nav class="mdl-navigation">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
+                    <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
+                        <i class="material-icons">search</i>
+                    </label>
+                    <div class="mdl-textfield__expandable-holder">
+                        <input class="mdl-textfield__input" type="text" id="search-field" placeholder="Search here" />
                     </div>
                 </div>
+            </nav>
+        </div>
 
-                <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-card mdl-shadow--4dp">
+    </header>
 
-                    <a href="/central-govt-jobs-icons" class="mdl-a">
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title"><a href="/portal"><img class="counting-india-logo-image" src="images/logo2.png" /></a></span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">About Us</a>
+            <a class="mdl-navigation__link" href="">Contact Us</a>
+        </nav>
+    </div>
 
-                        <div class="mdl-card__media">
-                            <img class="article-image" src="images/example-blog01.png" border="0" alt="" />
-                        </div>
+    <main class="mdl-layout__content">
 
-                        <div class="mdl-card__title">
-                            <h2 class="card_number mdl-card__title-text" th:text="${centralJobCount.count}">1,000</h2>
-                        </div>
-                        <div class="mdl-card__supporting-text text-align-center">
-                            <p>Number of Central Government Jobs available</p>
-                        </div>
-                    </a>
-
+        <div class="mdl-grid portfolio-max-width">
+            <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
+                <div class="mdl-card__media">
+                    <img class="mySlides" src="images/01.jpg" style="width:100%" />
+                    <img class="mySlides" src="images/02.jpg" style="width:100%" />
+                    <img class="mySlides" src="images/03.jpg" style="width:100%" />
+                    <img class="mySlides" src="images/04.jpg" style="width:100%" />
                 </div>
+            </div>
 
-                <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-card mdl-shadow--4dp">
+            <script>
+                /*<![CDATA[*/
+                var myIndex = 0;
+                carousel();
 
-                    <a href="/state-govt-jobs-icons" class="mdl-a">
+                function carousel() {
+                    var i;
+                    var x = document.getElementsByClassName("mySlides");
+                    var len = x.length;
+                    for (i = 0; i < len; i++) {
+                        x[i].style.display = "none";
+                    }
+                    myIndex++;
+                    if (myIndex > x.length) {myIndex = 1}
+                    x[myIndex-1].style.display = "block";
+                    setTimeout(carousel, 2000); // Change image every 2 seconds
+                }
+                /*]]>*/
+            </script>
+            
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-card mdl-shadow--4dp">
 
-                        <div class="mdl-card__media">
-                            <img class="article-image" src="images/example-blog02.png" border="0" alt="" />
-                        </div>
+                <a href="./central-govt-jobs-icons.html" class="mdl-a">
 
-                        <div class="mdl-card__title">
-                            <h2 class="card_number mdl-card__title-text" th:text="${stateJobCount.count}">3,000</h2>
-                        </div>
+                    <div class="mdl-card__media">
+                        <img class="article-image" src="images/example-blog01.png" border="0" alt="" />
+                    </div>
 
-
-                        <div class="mdl-card__supporting-text text-align-center">
-                            <p>Number of State Government Jobs available</p>
-                        </div>
-                    </a>
-
-                </div>
-
-                <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-card mdl-shadow--4dp">
-
-                    <a href="/other-state-govt-jobs-icons" class="mdl-a">
-                        <div class="mdl-card__media">
-                            <img class="article-image" src=" images/example-blog03.png" border="0" alt="" />
-                        </div>
-
-                        <div class="mdl-card__title">
-                            <h2 class="text-align-center card_number mdl-card__title-text" th:text="${otherJobCount.count}">5,000</h2>
-                        </div>
-
-
-                        <div class="mdl-card__supporting-text text-align-center">
-                            <p>Number of PSU Jobs and Other Government Jobs available</p>
-                        </div>
-                    </a>
-                </div>
+                    <div class="mdl-card__title">
+                        <h2 class="card_number mdl-card__title-text" th:text="${centralJobCount.count}">1,000</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text text-align-center">
+                        <p>Number of Central Government Jobs available</p>
+                    </div>
+                </a>
 
             </div>
 
-            <footer class="mdl-mini-footer" id="footer">
-                <div class="mdl-mini-footer__left-section">
-                    <div class="mdl-logo">Govt job portal</div>
-                </div>
-                <div class="mdl-mini-footer__right-section">
-                    <ul class="mdl-mini-footer__link-list">
-                        <li><a href="#">Help</a></li>
-                        <li><a href="#">Privacy and Terms</a></li>
-                    </ul>
-                </div>
-            </footer>
-        </main>
-    </div>
-    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-card mdl-shadow--4dp">
+
+                <a href="./state-govt-jobs-icons.html" class="mdl-a">
+
+                    <div class="mdl-card__media">
+                        <img class="article-image" src=" images/example-blog02.png" border="0" alt="" />
+                    </div>
+
+                    <div class="mdl-card__title">
+                        <h2 class="card_number mdl-card__title-text" th:text="${stateJobCount.count}">3,000</h2>
+                    </div>
+
+                    <div class="mdl-card__supporting-text text-align-center">
+                        <p>Number of State Government Jobs available</p>
+                    </div>
+                </a>
+
+            </div>
+
+            <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-card mdl-shadow--4dp">
+
+                <a href="./other-state-govt-jobs-icons.html" class="mdl-a">
+                    <div class="mdl-card__media">
+                        <img class="article-image" src=" images/example-blog03.png" border="0" alt="" />
+                    </div>
+                    <div class="mdl-card__title">
+                        <h2 class="text-align-center card_number mdl-card__title-text" th:text="${otherJobCount.count}">5,000</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text text-align-center">
+                        <p>Number of PSU Jobs and Other Government Jobs available</p>
+                    </div>
+                </a>
+
+            </div>
+
+        </div>
+
+        <footer class="mdl-mini-footer" id="footer">
+            <div class="mdl-mini-footer__left-section">
+                <div class="mdl-logo">Govt job portal</div>
+            </div>
+            <div class="mdl-mini-footer__right-section">
+                <ul class="mdl-mini-footer__link-list">
+                    <li><a href="#">Help</a></li>
+                    <li><a href="#">Privacy and Terms</a></li>
+                </ul>
+            </div>
+        </footer>
+    </main>
+</div>
+<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
 </body>
 
