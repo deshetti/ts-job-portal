@@ -36,7 +36,7 @@ public interface Job_notificationRepository extends JpaRepository<Job_notificati
     public OtherJobCount retrieveOtherJobCount();
 
     @Query("SELECT NEW gov.telangana.jobportal.web.domain.JobSummary(jn.id, jn.position_title, jn.no_of_vacancies, jn.application_deadline, jn.education_limit)" +
-        " FROM Job_notification jn JOIN jn.job_type jt WHERE jt.type = :type")
+        " FROM Job_notification jn JOIN jn.job_type jt WHERE jt.type = :type ORDER BY jn.notification_date DESC")
     public Page<JobSummary> findByJobType_Type(@Param("type") String type, Pageable pageable);
 
 }
